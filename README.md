@@ -1,2 +1,2 @@
-# CoderByte Solutions
-This repository keep track of my solutions to algorithmic problems found from http://coderbyte.com
+# Coderbyte Solution
+Here you can find my solution to algorithmic problems found from [coderbyte website](http://coderbyte.com).

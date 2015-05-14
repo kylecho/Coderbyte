@@ -1,34 +1,37 @@
-/**
- * Letter Count I
- * 
- * Have the function LetterCountI(str) take the str parameter being passed and return the first word with the greatest
- * number of repeated letters. For example: "Today, is the greatest day ever!" should return greatest because it has 
- * 2 e's (and 2 t's) and it comes before ever which also has 2 e's. If there are no words with repeating letters return -1.
- *
- * Words will be separated by spaces.
- */
-
+// Letter Count I
 function LetterCountI(str) {
-  var result = str.split(' ');
-  var myArr = result.slice();
-  var greatest = 0;
-  var current = 0;
-  var index = 0;
   
+  // Compare function should be carefully set up.
+  var compare = function(a, b) {
+      if (a < b) {
+          return -1;
+      } else if (a > b) {
+          return 1;
+      } else {
+          return 0;
+      }
+  };
+  
+  var copy = str.split(' ').slice();
+  var myArr = copy.slice();
+  var max = 0;   // Must be initiated with 0
+  var count = 0; // Must be initiated with 0
+  var theIndex;
+  var word;
+
   for (var i = 0; i < myArr.length; i++) {
-    myArr[i] = myArr[i].split('').sort().join('');
-    for (var j = 0; j < myArr[i].length-1; j++) {
-      if (myArr[i][j] === myArr[i][j+1]) {
-       	current++; 
+    word = myArr[i].split('').sort(compare);
+    for (var j = 0; j < word.length - 1; j++) {
+      if (word[j] === word[j + 1]) {
+        count++;
       }
     }
-    if (current > greatest) {
-      greatest = current;
-      current = 0;
-      index = i;
-    } else if (current < greatest) {
-      current = 0; 
+    if (count > max) {
+      max = count;
+      theIndex = i;
+      count = 0;
     }
   }
-  return (greatest !== 0) ? result[index] : -1;
+  
+  return (theIndex !== undefined) ? copy[theIndex] : -1;
 }
