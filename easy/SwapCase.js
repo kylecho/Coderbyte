@@ -1,18 +1,17 @@
-/**
- * Have the function swapCase(str) take the str parameter and swap the case of each character.
- * For example: if str is "Hello World" the output should be hELLO wORLD.
- * Let numbers and symbols stay the way they are.
- */
-
-function swapCase(str) {
-	var myArr = str.split('');
-	for (var i = 0; i < myArr.length; i++) {
-		if (myArr[i] == myArr[i].match(/[a-z]/)) {
-			myArr[i] = myArr[i].toUpperCase();
-		} else if (myArr[i] == myArr[i].match(/[A-Z]/)) {
-			myArr[i] = myArr[i].toLowerCase();
-		}
-	}
-
-	return myArr.join('');
+// Swap Case
+function SwapCase(str) {
+  var upper = 'abcdefghijklmnopqrstuvwxyz';
+  var lower = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var myStr = str.split('');
+  var result = '';
+  for (var i = 0; i < myStr.length; i++) {
+    if (upper.indexOf(myStr[i]) !== -1) {
+      result += lower[upper.indexOf(myStr[i])];
+    } else if (lower.indexOf(myStr[i]) !== -1) {
+      result += upper[lower.indexOf(myStr[i])];
+    } else {
+      result += myStr[i];
+    }
+  }
+  return result;
 }
