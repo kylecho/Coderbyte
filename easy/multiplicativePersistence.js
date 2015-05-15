@@ -1,28 +1,18 @@
-/**
- * Have the function multiplicativePersistence(num) take the num parameter being passed
- * which will always be a positive integer and return its multiplicative persistence which is the number of times
- * you must multiply the digits in num until you reach a single digit.
- * 
- * For example: if num is 39 then your program should return 3
- * because 3 * 9 = 27 then 2 * 7 = 14 and finally 1 * 4 = 4 and you stop at 4.
- */
+// Multiplicative Persistence
+function MultiplicativePersistence(num) {
+  var count = 0;
 
-function multiplicativePersistence(num) {
+  var reduceToSingleNum = function recursion(num) {
+    var myNum = num.toString();
+    if (myNum.length === 1) {
+      return true;
+    } else {
+      count++;
+      myNum = myNum.split('');
+      myNum = myNum.reduce(function(a, b) { return parseInt(a) * parseInt(b); });
+    } return recursion(myNum);
+  };
 
-	var counter = 0;
-
-	function recursion(num) {
-		var myNum = num.toString().split('');
-		if (myNum.length === 1) {
-			return counter;
-		} else {
-			counter++;
-			return recursion(myNum.reduce(function(cur, prev) {
-				return cur * prev;
-			}));
-		}
-	}
-
-	recursion(num);
-	return counter;
+  reduceToSingleNum(num);
+  return count;
 }
